@@ -3,8 +3,8 @@
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
-            <h1> Header
-                <small>it all start hear</small>
+            <h1>
+                @lang('site.dashboard')
             </h1>
 
             <ol class="breadcrumb">
