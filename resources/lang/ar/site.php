@@ -11,12 +11,13 @@ return [
 
 
     'add_user'                 => 'أضافة مستخدم',
+    'edit_info'                 => 'تعديل البيانات',
     'first_name'               => 'الاسم الاول',
-    'last_name'                => 'الاسم الثاني',
+    'last_name'                => 'أسم العائلة',
     'email'                    => 'البريد الألكتروني',
     'image'                    => 'الصوره',
-    'password'                 => 'كلمة السر',
-    'password_confirmation'    => 'تأكيد كلمة السر  ',
+    'password'                 => 'كلمة المرور',
+    'password_confirmation'    => 'تأكيد كلمة المرور  ',
 
     'add'                      => 'أضف',
     
@@ -31,4 +32,8 @@ return [
     'edit'                     => ' تعديل',
     'no_data_found'            => 'للاسف لايوجد  سجلات',
     'search'                   => 'بحث',
+
+    'add_successfully'         => 'تم أضافة البيانات بنجاح',
+    'edit_successfully'        => 'تم تعديل البيانات بنجاح',
+    'delete_successfully'      => 'تم حذف البيانات بنجاح',
 ];

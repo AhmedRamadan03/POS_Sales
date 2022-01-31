@@ -9,15 +9,15 @@
 
             <ol class="breadcrumb">
                 <li ><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a></li>
-                <li class="active">@lang('site.users')</li>
+                <li class="active"><i class="fa fa-users"></i> @lang('site.users')</li>
             </ol>
         </section>
 
         <section class="content">
             <div class="box box-primary">
+                
                 <div class="box-header with-border" style="margin-bottom:10px ">
                     <h3 class="box-title">@lang('site.users')</h3>
-
                     <form action="" style="margin-top:10px;" autocomplete="off">
                         <div class="row">
                             <div class="col-md-4">
@@ -25,7 +25,12 @@
                             </div>
                             <div class="col-md-4">
                                 <button type="submit" class="btn btn-primary btn-sm"><li class="fa fa-search"></li> @lang('site.search')</button>
-                                <a href="{{ route('dashboard.users.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> @lang('site.add_user')   </a>
+                               @if(auth()->user()->hasPermission('users-create'))
+                                    <a href="{{ route('dashboard.users.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> @lang('site.add_user')   </a>
+
+                               @else
+                               <a href="#" class="btn btn-primary btn-sm disabled"><i class="fa fa-plus"></i> @lang('site.add_user')   </a>
+                               @endif
                             </div>
                         </div>
                     </form>
@@ -52,18 +57,31 @@
                                 <td>{{ $user->last_name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <a href="{{ route('dashboard.users.edit', $user->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
-                                    <form action="{{ route('dashboard.users.destroy',$user->id) }}" method="post" style="display: inline;">
-                                       @csrf
-                                       <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trus "></i>@lang('site.delete')</button>
-                                    </form>
+                                   @if (auth()->user()->hasPermission('users-update'))
+                                        <a href="{{ route('dashboard.users.edit', $user->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
+
+                                   @else
+                                        <button class="btn btn-info btn-sm disabled">@lang('site.edit')</button>
+                                   @endif
+                                  @if (auth()->user()->hasPermission('users-delete'))
+                                        <form action="{{ route('dashboard.users.destroy',$user->id) }}" method="post" style="display: inline;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trus "></i>@lang('site.delete')</button>
+                                        </form>
+                                  @else
+                                        <button class="btn btn-danger btn-sm disabled">@lang('site.delete')</button>
+
+                                  @endif
+                                    
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>   <!-- end of table  -->
                   @else
-                      <h2>@lang('site.no_data_found')</h2>
+                      <div class="text-center">
+                        <h2>@lang('site.no_data_found')</h2>
+                      </div>
                   @endif
                 </div>
             </div>

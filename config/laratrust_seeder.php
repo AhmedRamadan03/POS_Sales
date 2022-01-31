@@ -6,6 +6,8 @@ return [
             'users' => 'c,r,u,d',
             
         ],
+
+        'admin' => []
         
     ],
         'permission_map' => [

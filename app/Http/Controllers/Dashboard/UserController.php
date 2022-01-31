@@ -37,7 +37,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|unique:users',
+            'image' => 'image',
+            'password' => 'required|confirmed',
+            // 'permissions' => 'required|min:1'
+        ]);
+
+        $request_data = $request->except(['password','password_confirmation','permissions']);
+        $request_data['password'] = bcrypt($request->password);
+        
+        $user = User::create($request_data);
+        $user->attachRole('admin');
+        $user->syncPermissions($request->permissions);
+
+        session()->flash('success',__('site.add_successfully'));
+        return redirect()->route('dashboard.users.index');
     }
 
     /**
@@ -59,7 +77,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+
+        return view('dashboard.users.edit' , compact('user'));
     }
 
     /**
@@ -71,7 +90,20 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'image' => 'image',
+            // 'password' => 'required|confirmed',
+            // 'permissions' => 'required|min:1'
+        ]);
+
+        $request_data = $request->except(['permissions']);
+        $user->syncPermissions($request->permissions);
+
+        session()->flash('success',__('site.edit_successfully'));
+        return redirect()->route('dashboard.users.index');  
     }
 
     /**

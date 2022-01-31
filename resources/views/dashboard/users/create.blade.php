@@ -7,8 +7,10 @@
             </h1>
 
             <ol class="breadcrumb">
-                <li ><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a></li>
-                <li class="active"><a href="{{ route('dashboard.users.index') }}">@lang('site.users') </a></li>
+                <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a>
+                </li>
+                <li class="active"><a href="{{ route('dashboard.users.index') }}"><i class="fa fa-users"></i>
+                        @lang('site.users') </a></li>
                 <li class="active">@lang('site.add_user')</li>
             </ol>
         </section>
@@ -25,7 +27,7 @@
                     @include('partials._errors')
 
                     <form action="{{ route('dashboard.users.store') }}" method="post" enctype="multipart/form-data">
-                      @csrf
+                        @csrf
 
                         <div class="form-group col-md-4">
                             <label>@lang('site.first_name')</label>
@@ -48,7 +50,8 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <img src="{{ asset('uploads/user_images/default.png') }}"  style="width: 100px" class="img-thumbnail image-preview" alt="">
+                            <img src="{{ asset('uploads/user_images/default.png') }}" style="width: 100px"
+                                class="img-thumbnail image-preview" alt="">
                         </div>
 
                         <div class="form-group col-md-3">
@@ -83,7 +86,7 @@
                                         <div class="tab-pane {{ $index == 0 ? 'active' : '' }}" id="{{ $model }}">
 
                                             @foreach ($maps as $map)
-                                                <label><input type="checkbox" name="permissions[]" value="{{ $map . '_' . $model }}"> @lang('site.' . $map)</label>
+                                                <label><input type="checkbox" name="permissions[]" value="{{ $model . '-' . $map }}"> @lang('site.' . $map)</label>
                                             @endforeach
 
                                         </div>
@@ -91,13 +94,14 @@
                                     @endforeach
 
                                 </div><!-- end of tab content -->
-                                
+
                             </div><!-- end of nav tabs -->
-                            
+
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.add')</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>
+                                @lang('site.add')</button>
                         </div>
 
                     </form><!-- end of form -->
@@ -108,4 +112,3 @@
         </section>
     </div>
 @endsection
-

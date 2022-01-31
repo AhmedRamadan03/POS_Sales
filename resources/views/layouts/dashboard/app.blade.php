@@ -207,7 +207,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="{{ asset('dashboard_files/img/user2-160x160.jpg') }}"
                                     class="user-image" alt="User Image">
-                                {{-- <span class="hidden-xs">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span> --}}
+                                <span class="hidden-xs">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
                             </a>
                             <ul class="dropdown-menu">
 
@@ -217,7 +217,7 @@
                                         class="img-circle" alt="User Image">
 
                                     <p>
-                                        {{-- {{ auth()->user()->first_name }} {{ auth()->user()->last_name }} --}}
+                                        {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
                                         <small>Member since 2 days</small>
                                     </p>
                                 </li>
@@ -243,12 +243,12 @@
             </nav>
 
         </header>
-
+ @include('partials._session')
         @include('layouts.dashboard._aside')
-
+       
         @yield('content')
 
-        {{-- @include('partials._session') --}}
+       
 
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
