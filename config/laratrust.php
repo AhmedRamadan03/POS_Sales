@@ -174,6 +174,8 @@ return [
          */
         'handling' => 'abort',
 
+        'params' => '403',
+
         /**
          * Handlers for the unauthorized method in the middlewares.
          * The name of the handler must be the same as the handling.

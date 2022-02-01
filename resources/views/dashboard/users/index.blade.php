@@ -4,12 +4,12 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                @lang('site.users')
+                <i class="fa fa-users"></i>  @lang('site.users')
             </h1>
 
             <ol class="breadcrumb">
                 <li ><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a></li>
-                <li class="active"><i class="fa fa-users"></i> @lang('site.users')</li>
+                <li class="active"><i class="fa fa-users"></i> @lang('site.users') </li>
             </ol>
         </section>
 
@@ -17,11 +17,11 @@
             <div class="box box-primary">
                 
                 <div class="box-header with-border" style="margin-bottom:10px ">
-                    <h3 class="box-title">@lang('site.users')</h3>
-                    <form action="" style="margin-top:10px;" autocomplete="off">
+                    <h3 class="box-title"><i class="fa fa-users"></i> @lang('site.users') <small>{{ $users->count() }}</small></h3>
+                    <form action="{{ route('dashboard.users.index') }}" method="GET" style="margin-top:10px;" autocomplete="off">
                         <div class="row">
                             <div class="col-md-4">
-                                <input type="text" name="search" class="form-control" placeholder="@lang('site.search')">
+                                <input type="text" name="search" class="form-control" placeholder="@lang('site.search')" value="{{ request()->search }}">
                             </div>
                             <div class="col-md-4">
                                 <button type="submit" class="btn btn-primary btn-sm"><li class="fa fa-search"></li> @lang('site.search')</button>
@@ -43,6 +43,7 @@
                     <thead>
                         <tr>
                             <td>#</td>
+                            <td>@lang('site.image')</td>
                             <td>@lang('site.first_name')</td>
                             <td>@lang('site.last_name')</td>
                             <td>@lang('site.email')</td>
@@ -53,6 +54,7 @@
                         @foreach ($users as $index=>$user )
                             <tr>
                                 <td>{{ $index +1}}</td>
+                                <td><img class="image" src="{{ $user->image_path }}" alt="" style="width: 40px;height: 40px; border-radius: 50%"></td>
                                 <td>{{ $user->first_name }}</td>
                                 <td>{{ $user->last_name }}</td>
                                 <td>{{ $user->email }}</td>
@@ -61,15 +63,16 @@
                                         <a href="{{ route('dashboard.users.edit', $user->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
 
                                    @else
-                                        <button class="btn btn-info btn-sm disabled">@lang('site.edit')</button>
+                                        <button class="btn btn-info btn-sm disabled"><i class="fa fa-edit"> @lang('site.edit')</button>
                                    @endif
                                   @if (auth()->user()->hasPermission('users-delete'))
                                         <form action="{{ route('dashboard.users.destroy',$user->id) }}" method="post" style="display: inline;">
                                             @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trus "></i>@lang('site.delete')</button>
+                                           @method('delete')
+                                            <button type="submit" class="btn btn-danger delete btn-sm"><i class="fa fa-trash "></i>@lang('site.delete')</button>
                                         </form>
                                   @else
-                                        <button class="btn btn-danger btn-sm disabled">@lang('site.delete')</button>
+                                        <button class="btn btn-danger btn-sm disabled"><i class="fa fa-trash "></i>@lang('site.delete')</button>
 
                                   @endif
                                     
@@ -78,6 +81,9 @@
                         @endforeach
                     </tbody>
                 </table>   <!-- end of table  -->
+
+                {{ $users->links() }}
+                
                   @else
                       <div class="text-center">
                         <h2>@lang('site.no_data_found')</h2>

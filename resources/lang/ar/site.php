@@ -36,4 +36,7 @@ return [
     'add_successfully'         => 'تم أضافة البيانات بنجاح',
     'edit_successfully'        => 'تم تعديل البيانات بنجاح',
     'delete_successfully'      => 'تم حذف البيانات بنجاح',
+    'confirm_delete'           => ' تأكيد الحذف',
+    'yes'                      => 'تأكيد',
+    'no'                       => 'الغاء',
 ];

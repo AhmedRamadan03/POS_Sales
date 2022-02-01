@@ -29,39 +29,47 @@
                     <form action="{{ route('dashboard.users.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
-                        <div class="form-group col-md-4">
-                            <label>@lang('site.first_name')</label>
-                            <input type="text" name="first_name" class="form-control" value="{{ old('first_name') }}">
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label>@lang('site.first_name')</label>
+                                <input type="text" name="first_name" class="form-control" value="{{ old('first_name') }}">
+                            </div>
+    
+                            <div class="form-group col-md-4">
+                                <label>@lang('site.last_name')</label>
+                                <input type="text" name="last_name" class="form-control" value="{{ old('last_name') }}">
+                            </div>
+    
+                            <div class="form-group col-md-4">
+                                <label>@lang('site.email')</label>
+                                <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+                            </div>
                         </div>
 
-                        <div class="form-group col-md-4">
-                            <label>@lang('site.last_name')</label>
-                            <input type="text" name="last_name" class="form-control" value="{{ old('last_name') }}">
-                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label>@lang('site.image')</label>
+                                <input  type="file" name="image" class="form-control image">
+                            </div>
+    
+                            <div class="form-group col-md-3">
+                                <img src="{{ asset('uploads/user_images/default.png') }}" style="width: 100px"
+                                    class="img-thumbnail image-preview" alt="">
+                            </div>
 
-                        <div class="form-group col-md-4">
-                            <label>@lang('site.email')</label>
-                            <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+                            <div class="form-group col-md-3">
+                                <label>@lang('site.password')</label>
+                                <input type="password" name="password" class="form-control">
+                            </div>
+    
+                            <div class="form-group col-md-3">
+                                <label>@lang('site.password_confirmation')</label>
+                                <input type="password" name="password_confirmation" class="form-control">
+                            </div>
+    
                         </div>
-
-                        <div class="form-group col-md-3">
-                            <label>@lang('site.image')</label>
-                            <input type="file" name="image" class="form-control image">
-                        </div>
-
-                        <div class="form-group col-md-3">
-                            <img src="{{ asset('uploads/user_images/default.png') }}" style="width: 100px"
-                                class="img-thumbnail image-preview" alt="">
-                        </div>
-
-                        <div class="form-group col-md-3">
-                            <label>@lang('site.password')</label>
-                            <input type="password" name="password" class="form-control">
-                        </div>
-
-                        <div class="form-group col-md-3">
-                            <label>@lang('site.password_confirmation')</label>
-                            <input type="password" name="password_confirmation" class="form-control">
+                        <div class="row">
+                            
                         </div>
 
                         <div class="form-group ">

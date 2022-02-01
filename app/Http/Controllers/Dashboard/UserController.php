@@ -5,18 +5,31 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['permission:users-read'])->only('index');
+        $this->middleware(['permission:users-create'])->only('create');
+        $this->middleware(['permission:users-update'])->only('edit');
+        $this->middleware(['permission:users-delete'])->only('destroy');
+    } // end of construct
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       $users = User::all();
-       return view('dashboard.users.index', compact('users'));
+        $users = User::whereRoleIs('admin')->where(function ($query) use ($request) {
+            return  $query->where('first_name', 'like', '%' . $request->search . '%')->orWhere('last_name', 'like', '%' . $request->search . '%');
+        })->latest()->paginate(5);
+
+        return view('dashboard.users.index', compact('users'));
     }
 
     /** 
@@ -47,14 +60,22 @@ class UserController extends Controller
             // 'permissions' => 'required|min:1'
         ]);
 
-        $request_data = $request->except(['password','password_confirmation','permissions']);
+        $request_data = $request->except(['password', 'password_confirmation', 'permissions', 'image']);
         $request_data['password'] = bcrypt($request->password);
-        
+
+        if ($request->image) {
+            Image::make($request->image)->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path('uploads/users_images/' . $request->image->hashName()));
+            
+            $request_data['image'] = $request->image->hashName();
+        }
+
         $user = User::create($request_data);
         $user->attachRole('admin');
         $user->syncPermissions($request->permissions);
 
-        session()->flash('success',__('site.add_successfully'));
+        session()->flash('success', __('site.add_successfully'));
         return redirect()->route('dashboard.users.index');
     }
 
@@ -78,7 +99,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
 
-        return view('dashboard.users.edit' , compact('user'));
+        return view('dashboard.users.edit', compact('user'));
     }
 
     /**
@@ -102,8 +123,8 @@ class UserController extends Controller
         $request_data = $request->except(['permissions']);
         $user->syncPermissions($request->permissions);
 
-        session()->flash('success',__('site.edit_successfully'));
-        return redirect()->route('dashboard.users.index');  
+        session()->flash('success', __('site.edit_successfully'));
+        return redirect()->route('dashboard.users.index');
     }
 
     /**
@@ -114,6 +135,12 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        if($user->image != 'user.png'){
+            Storage::disk('public_uploads')->delete('/users_images/' . $user->image);
+        }
+        $user->delete();
+
+        session()->flash('success', __('site.delete_successfully'));
+        return redirect()->route('dashboard.users.index');
     }
 }

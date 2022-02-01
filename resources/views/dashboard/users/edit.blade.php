@@ -28,7 +28,7 @@
 
                     <form action="{{ route('dashboard.users.update',$user->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
-                       @method('put')
+                        @method('put')
 
                         <div class="form-group col-md-6">
                             <label>@lang('site.first_name')</label>
