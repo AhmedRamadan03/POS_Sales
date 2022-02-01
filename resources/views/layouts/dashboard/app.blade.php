@@ -205,7 +205,7 @@
                         <li class="dropdown user user-menu">
 
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{ asset('dashboard_files/img/user2-160x160.jpg') }}"
+                                <img src="{{ Auth::user()->image_path }}"
                                     class="user-image" alt="User Image">
                                 <span class="hidden-xs">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
                             </a>
@@ -213,7 +213,7 @@
 
                                 {{-- <!-- User image --> --}}
                                 <li class="user-header">
-                                    <img src="{{ asset('dashboard_files/img/user2-160x160.jpg') }}"
+                                    <img src="{{  Auth::user()->image_path }}"
                                         class="img-circle" alt="User Image">
 
                                     <p>
@@ -226,7 +226,7 @@
                                 <li class="user-footer">
 
 
-                                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
+                                    <a  href="{{ route('logout') }}" class="btn btn-default btn-flat"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">@lang('site.logout')</a>
 

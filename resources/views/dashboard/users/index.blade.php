@@ -54,7 +54,7 @@
                         @foreach ($users as $index=>$user )
                             <tr>
                                 <td>{{ $index +1}}</td>
-                                <td><img class="image" src="{{ $user->image_path }}" alt="" style="width: 40px;height: 40px; border-radius: 50%"></td>
+                                <td><img class="user-image" src="{{ $user->image_path }}" alt="" ></td>
                                 <td>{{ $user->first_name }}</td>
                                 <td>{{ $user->last_name }}</td>
                                 <td>{{ $user->email }}</td>

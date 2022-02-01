@@ -54,7 +54,7 @@
                             
                         </div>
                         <div class="form-group col-md-6">
-                            <img src="{{ asset('uploads/user_images/default.png') }}" style="width: 100px"
+                            <img src="{{ $user->image_path }}" style="width: 100px"
                                 class="img-thumbnail image-preview" alt="">
                         </div>
 

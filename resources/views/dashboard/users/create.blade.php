@@ -53,7 +53,7 @@
                             </div>
     
                             <div class="form-group col-md-3">
-                                <img src="{{ asset('uploads/user_images/default.png') }}" style="width: 100px"
+                                <img src="{{ asset('uploads/users_images/user.png') }}" style="width: 100px"
                                     class="img-thumbnail image-preview" alt="">
                             </div>
 

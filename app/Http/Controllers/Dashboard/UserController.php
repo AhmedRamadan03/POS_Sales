@@ -57,17 +57,17 @@ class UserController extends Controller
             'email' => 'required|unique:users',
             'image' => 'image',
             'password' => 'required|confirmed',
-            // 'permissions' => 'required|min:1'
+            'permissions' => 'required|min:1'
         ]);
 
         $request_data = $request->except(['password', 'password_confirmation', 'permissions', 'image']);
         $request_data['password'] = bcrypt($request->password);
 
         if ($request->image) {
-            Image::make($request->image)->resize(300, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save(public_path('uploads/users_images/' . $request->image->hashName()));
-            
+            Image::make($request->image)->resize(40, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/users_images/' . $request->image->hashName()));
+
             $request_data['image'] = $request->image->hashName();
         }
 
@@ -117,10 +117,23 @@ class UserController extends Controller
             'email' => 'required',
             'image' => 'image',
             // 'password' => 'required|confirmed',
-            // 'permissions' => 'required|min:1'
+            'permissions' => 'required|min:1'
         ]);
 
-        $request_data = $request->except(['permissions']);
+        $request_data = $request->except(['permissions', 'image']);
+
+        if ($request->image) {
+            if ($user->image != 'user.png') {
+                Storage::disk('public_uploads')->delete('/users_images/' . $user->image);
+            }
+
+            Image::make($request->image)->resize(40, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/users_images/' . $request->image->hashName()));
+
+            $request_data['image'] = $request->image->hashName();
+        }
+        $user->update($request_data);
         $user->syncPermissions($request->permissions);
 
         session()->flash('success', __('site.edit_successfully'));
@@ -135,7 +148,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if($user->image != 'user.png'){
+        if ($user->image != 'user.png') {
             Storage::disk('public_uploads')->delete('/users_images/' . $user->image);
         }
         $user->delete();
