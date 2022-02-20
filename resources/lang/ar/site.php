@@ -20,6 +20,8 @@ return [
     'password_confirmation'    => 'تأكيد كلمة المرور  ',
 
     'add'                      => 'أضف',
+    'add_cat'                  =>  'أضافة قسم',
+    'name'                     =>'الأسم',
     
     'permissions'              => ' الصلاحيات',
 
@@ -39,5 +41,10 @@ return [
     'confirm_delete'           => ' تأكيد الحذف',
     'yes'                      => 'تأكيد',
     'no'                       => 'الغاء',
-    'logout'                       => 'تسجيل الخروج',
+    'logout'                   => 'تسجيل الخروج',
+    'add_product'              =>  'أضافة منتج',
+    'all_categories'              =>  'كل الأقسام',
+    'purches_price'            =>   'سعر الشراء',
+    'sale_price'            =>   'سعر البيع',
+    'purches_price'            =>   'سعر الشراء',
 ];

@@ -4,12 +4,12 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                <i class="fa fa-users"></i>  @lang('site.users')
+                <i class="fa fa-products"></i>  @lang('site.products')
             </h1>
 
             <ol class="breadcrumb">
                 <li ><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a></li>
-                <li class="active"><i class="fa fa-users"></i> @lang('site.users') </li>
+                <li class="active"><i class="fa fa-products"></i> @lang('site.products') </li>
             </ol>
         </section>
 
@@ -17,19 +17,19 @@
             <div class="box box-primary">
                 
                 <div class="box-header with-border" style="margin-bottom:10px ">
-                    <h3 class="box-title"><i class="fa fa-users"></i> @lang('site.users') <small>{{ $users->count() }}</small></h3>
-                    <form action="{{ route('dashboard.users.index') }}" method="GET" style="margin-top:10px;" autocomplete="off">
+                    <h3 class="box-title"><i class="fa fa-products"></i> @lang('site.products') <small>{{ $products->count() }}</small></h3>
+                    <form action="{{ route('dashboard.products.index') }}" method="GET" style="margin-top:10px;" autocomplete="off">
                         <div class="row">
                             <div class="col-md-4">
                                 <input type="text" name="search" class="form-control" placeholder="@lang('site.search')" value="{{ request()->search }}">
                             </div>
                             <div class="col-md-4">
                                 <button type="submit" class="btn btn-primary btn-sm"><li class="fa fa-search"></li> @lang('site.search')</button>
-                               @if(auth()->user()->hasPermission('users-create'))
-                                    <a href="{{ route('dashboard.users.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> @lang('site.add_user')   </a>
+                               @if(auth()->user()->hasPermission('products-create'))
+                                    <a href="{{ route('dashboard.products.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> @lang('site.add_product')   </a>
 
                                @else
-                               <a href="#" class="btn btn-primary btn-sm disabled"><i class="fa fa-plus"></i> @lang('site.add_user')   </a>
+                               <a href="#" class="btn btn-primary btn-sm disabled"><i class="fa fa-plus"></i> @lang('site.add_product')   </a>
                                @endif
                             </div>
                         </div>
@@ -38,35 +38,40 @@
 
                 </div><!-- end of box header -->
                 <div class="box-body">
-                  @if ($users->count() > 0)
+                  @if ($products->count() > 0)
                   <table class="table table-hover">
                     <thead>
                         <tr>
                             <td>#</td>
+                            
+                            <td>@lang('site.name')</td>
                             <td>@lang('site.image')</td>
-                            <td>@lang('site.first_name')</td>
-                            <td>@lang('site.last_name')</td>
-                            <td>@lang('site.email')</td>
+                            <td>@lang('site.purches_price')</td>
+                            <td>@lang('site.sale_price')</td>
+                            <td>@lang('site.stock')</td>
+                            
                             <td>@lang('site.action')</td>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $index=>$user )
+                        @foreach ($products as $index=>$product )
                             <tr>
                                 <td>{{ $index +1}}</td>
-                                <td><img class="user-image" src="{{ $user->image_path }}" alt="" style="width: 30px"></td>
-                                <td>{{ $user->first_name }}</td>
-                                <td>{{ $user->last_name }}</td>
-                                <td>{{ $user->email }}</td>
+                                
+                                <td><img src="" alt=""></td>
+                                <td>{{ $product->purches_price }}</td>
+                                <td>{{ $product->sale_price }}</td>
+                                <td>{{ $product->stock }}</td>
+                               
                                 <td>
-                                   @if (auth()->user()->hasPermission('users-update'))
-                                        <a href="{{ route('dashboard.users.edit', $user->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
+                                   @if (auth()->user()->hasPermission('products-update'))
+                                        <a href="{{ route('dashboard.products.edit', $product->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
 
                                    @else
                                         <button class="btn btn-info btn-sm disabled"><i class="fa fa-edit"> @lang('site.edit')</button>
                                    @endif
-                                  @if (auth()->user()->hasPermission('users-delete'))
-                                        <form action="{{ route('dashboard.users.destroy',$user->id) }}" method="post" style="display: inline;">
+                                  @if (auth()->user()->hasPermission('products-delete'))
+                                        <form action="{{ route('dashboard.products.destroy',$product->id) }}" method="post" style="display: inline;">
                                             @csrf
                                            @method('delete')
                                             <button type="submit" class="btn btn-danger delete btn-sm"><i class="fa fa-trash "></i>@lang('site.delete')</button>
@@ -82,7 +87,7 @@
                     </tbody>
                 </table>   <!-- end of table  -->
 
-                {{ $users->links() }}
+                {{ $products->links() }}
                 
                   @else
                       <div class="text-center">

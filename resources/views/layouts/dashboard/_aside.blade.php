@@ -15,12 +15,12 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-th"></i><span>@lang('site.dashboard')</span></a></li>
 
-            @if (auth()->user()->hasPermission('read_categories'))
-                <li><a href=""><i class="fa fa-th"></i><span>@lang('site.categories')</span></a></li>
+            @if (auth()->user()->hasPermission('categories-read'))
+                <li><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-th"></i><span>@lang('site.categories')</span></a></li>
             @endif
 
-            @if (auth()->user()->hasPermission('read_products'))
-                <li><a href=""><i class="fa fa-th"></i><span>@lang('site.products')</span></a></li>
+            @if (auth()->user()->hasPermission('products-read'))
+                <li><a href="{{ route('dashboard.products.index') }}"><i class="fa fa-th"></i><span>@lang('site.products')</span></a></li>
             @endif
 
             @if (auth()->user()->hasPermission('read_clients'))
