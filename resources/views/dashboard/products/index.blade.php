@@ -48,6 +48,7 @@
                             <td>@lang('site.image')</td>
                             <td>@lang('site.purches_price')</td>
                             <td>@lang('site.sale_price')</td>
+                            <td>@lang('site.profit_percent')</td>
                             <td>@lang('site.stock')</td>
                             
                             <td>@lang('site.action')</td>
@@ -57,10 +58,12 @@
                         @foreach ($products as $index=>$product )
                             <tr>
                                 <td>{{ $index +1}}</td>
+                                <td>{{ $product->name }}</td>
                                 
-                                <td><img src="" alt=""></td>
+                                <td><img src="{{ $product->image_path }}" alt="" style="width: 50px"></td>
                                 <td>{{ $product->purches_price }}</td>
                                 <td>{{ $product->sale_price }}</td>
+                                <td>{{ $product->profit_percent }}</td>
                                 <td>{{ $product->stock }}</td>
                                
                                 <td>

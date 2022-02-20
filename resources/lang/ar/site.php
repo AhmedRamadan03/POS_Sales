@@ -45,6 +45,7 @@ return [
     'add_product'              =>  'أضافة منتج',
     'all_categories'              =>  'كل الأقسام',
     'purches_price'            =>   'سعر الشراء',
-    'sale_price'            =>   'سعر البيع',
-    'purches_price'            =>   'سعر الشراء',
+    'sale_price'                =>   'سعر البيع',
+    'stock'                      => ' المخزن',
+    'profit_percent'            =>'نسبه المكسب'
 ];

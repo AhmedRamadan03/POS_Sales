@@ -44,6 +44,7 @@
                         <tr>
                             <td>#</td>
                             <td>@lang('site.name')</td>
+                            <td>@lang('site.products')</td>
                             <td>@lang('site.action')</td>
                         </tr>
                     </thead>
@@ -52,6 +53,7 @@
                             <tr>
                                 <td>{{ $index +1}}</td>
                                 <td>{{ $cat->name }}</td>
+                                <td>{{ $cat->products->count() }}</td>
                                 <td>
                                    @if (auth()->user()->hasPermission('categories-update'))
                                         <a href="{{ route('dashboard.categories.edit', $cat->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>

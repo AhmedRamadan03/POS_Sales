@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+
 
 class ProductController extends Controller
 {
@@ -42,7 +44,30 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'name' => 'required|unique:products,name',
+            'category_id' => 'required',
+            'purches_price' => 'required',
+            'sale_price' => 'required',
+            'stock' => 'required',
+        ]);
+
+
+        $request_data = $request->all();
+
+        if ($request->image) {
+            Image::make($request->image)->resize(40, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/product_images/' . $request->image->hashName()));
+
+            $request_data['image'] = $request->image->hashName();
+        }
+
+       Product::create($request_data);
+
+       session()->flash('success', __('site.add_successfully'));
+        return redirect()->route('dashboard.products.index');
+
     }
 
     /**
@@ -64,7 +89,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('dashboard.products.edit',compact('product'));
     }
 
     /**
@@ -87,6 +112,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        session()->flash('success', __('site.delete_successfully'));
+        return redirect()->route('dashboard.products.index'); 
     }
 }

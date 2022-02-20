@@ -28,7 +28,7 @@ class User extends Authenticatable
         
     ];
 
-    protected $appends = ['image_path'];
+    protected $appends = ['image_path']; 
 
     /**
      * The attributes that should be hidden for serialization.

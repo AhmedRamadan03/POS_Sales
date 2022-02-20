@@ -159,8 +159,8 @@ return [
             'description' => 'الوصف بالغه الانجليزيه',
         ],
 
-        'category_id' => 'القسم',
-        'purchase_price' => 'سعر الشرلء',
+        'cat_id' => 'القسم',
+        'purches_price' => 'سعر الشراء',
         'sale_price' => 'سعر البيع',
         'stock' => 'مخزن',
         'phone.0' => 'التلفون',

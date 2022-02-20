@@ -3,14 +3,14 @@
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>@lang('site.categories')
+            <h1>@lang('site.products')
             </h1>
 
             <ol class="breadcrumb">
                 <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a>
                 </li>
-                <li class="active"><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-categories"></i>
-                        @lang('site.categories') </a></li>
+                <li class="active"><a href="{{ route('dashboard.products.index') }}"><i class="fa fa-products"></i>
+                        @lang('site.products') </a></li>
                 <li class="active">@lang('site.edit')</li>
             </ol>
         </section>
@@ -26,13 +26,13 @@
 
                     @include('partials._errors')
 
-                    <form action="{{ route('dashboard.categories.update',$category->id) }}" method="post">
+                    <form action="{{ route('dashboard.products.update',$product->id) }}" method="post">
                         @csrf
                         @method('put')
 
                         <div class="form-group col-md-6">
                             <label>@lang('site.name')</label>
-                            <input type="text" name="name" class="form-control" value="{{ $category->name}}">
+                            <input type="text" name="name" class="form-control" value="{{ $product->name}}">
                         </div>
 
                         

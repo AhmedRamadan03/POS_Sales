@@ -32,15 +32,15 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label>@lang('site.name')</label>
-                                <input type="text" name="name" class="form-control" value="{{ old('name') }}">
+                                <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label>@lang('site.categories')</label>
-                                <select name="cat_id" id="" class="form-control ">
+                                <select name="category_id" id="" class="form-control " required>
                                     <option value="" selected disabled>@lang('site.all_categories')</option>
                                    @foreach ($categories as $cat)
-                                       <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                       <option value="{{ $cat->id }}" {{ old('cat_id') == $cat->id ?'selected':'' }}>{{ $cat->name }}</option>
                                    @endforeach
                                 </select>
                             </div>
@@ -65,11 +65,15 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label>@lang('site.purches_price')</label>
-                                <input  type="number" name="purches_price" class="form-control image">
+                                <input  type="number" name="purches_price" class="form-control " value="{{old('purches_price')}}" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>@lang('site.sale_price')</label>
-                                <input  type="number" name="sale_price" class="form-control image">
+                                <input  type="number" name="sale_price" class="form-control " value="{{ old('sale_price') }}" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>@lang('site.stock')</label>
+                                <input  type="number" name="stock" class="form-control " value="{{ old('stock') }}" required>
                             </div>
                         </div>
 
