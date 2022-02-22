@@ -7,7 +7,7 @@
             </h1>
 
             <ol class="breadcrumb">
-                <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a>
+                <li><a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a>
                 </li>
                 <li class="active"><a href="{{ route('dashboard.users.index') }}"><i class="fa fa-users"></i>
                         @lang('site.users') </a></li>

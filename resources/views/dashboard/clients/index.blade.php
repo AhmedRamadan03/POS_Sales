@@ -8,7 +8,7 @@
             </h1>
 
             <ol class="breadcrumb">
-                <li ><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a></li>
+                <li ><a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a></li>
                 <li class="active"><i class="fa fa-users"></i> @lang('site.clients') </li>
             </ol>
         </section>
@@ -57,7 +57,13 @@
                                 <td>{{ $client->name }}</td>
                                 <td>{{ $client->phone }}</td>
                                 <td>{{ $client->address }}</td>
-                                <td><a class="btn btn-primary btn-sm" href="{{ route('dashboard.clients.orders.create',$client->id) }}">@lang('site.add_order')</a></td>
+                                <td>
+                                   @if (auth()->user()->hasPermission('orders-create'))
+                                   <a class="btn btn-primary btn-sm" href="{{ route('dashboard.clients.orders.create',$client->id) }}">@lang('site.add_order')</a>
+                                   @else
+                                   <a class="btn btn-primary btn-sm disabled"  href="#">@lang('site.add_order')</a>
+                                   @endif
+                                </td>
                                 <td>
                                    @if (auth()->user()->hasPermission('clients-update'))
                                         <a href="{{ route('dashboard.clients.edit',$client->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>

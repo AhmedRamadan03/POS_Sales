@@ -3,7 +3,7 @@
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\Client\OrderController;
 use App\Http\Controllers\Dashboard\ClientController;
-use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\WelcomeController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
@@ -13,7 +13,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
 {
 	Route::prefix('dashboard')->name('dashboard.')->middleware(['auth'])->group(function () {
 
-        Route::get('index',[DashboardController::class,'index'])->name('index');
+        Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 
         Route::resource('users',UserController::class)->except(['show']);
 

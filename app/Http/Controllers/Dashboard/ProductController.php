@@ -52,7 +52,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:products,name',
+            'name' => 'required',
             'category_id' => 'required',
             'purches_price' => 'required',
             'sale_price' => 'required',

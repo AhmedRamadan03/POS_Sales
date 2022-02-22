@@ -95,7 +95,7 @@ function calculateTotal() {
 
     $('.order-list .product-price').each(function(index) {
         
-        price += parseFloat($(this).html().replace(/,/g, ''));
+        price += parseFloat($(this).html().replace(/,/g, '')); //convert string to int
 
     });//end of product price
 

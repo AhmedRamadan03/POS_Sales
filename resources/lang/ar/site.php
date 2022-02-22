@@ -18,13 +18,17 @@ return [
     'all_categories'              =>  'كل الأقسام',
     'purches_price'            =>   'سعر الشراء',
     'sale_price'                =>   'سعر البيع',
-    'stock'                      => ' المخزن',
+    'stock'                      => ' الكمية',
     'profit_percent'            =>'نسبه المكسب',
+    'add_product'            =>'أضافة  منتج',
+    'price'                    =>   'السعر',
+    'product'                   =>  'المنتج',
 
 
     //orders
     'orders'                   => 'الفواتير',
-    'add_order'                   => 'أنشاء طلب',
+    'add_order'                   => 'أنشاء فاتورة',
+    'total'                     =>  'الأجمالي',
 
 
 
