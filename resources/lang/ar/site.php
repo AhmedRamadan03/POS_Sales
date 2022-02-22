@@ -24,6 +24,7 @@ return [
 
     //orders
     'orders'                   => 'الفواتير',
+    'add_order'                   => 'أنشاء طلب',
 
 
 
