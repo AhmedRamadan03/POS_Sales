@@ -4,7 +4,7 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                @lang('site.dashboard')
+                <i class="fa fa-dashboard"></i> @lang('site.dashboard')
             </h1>
 
             <ol class="breadcrumb">

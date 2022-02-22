@@ -26,20 +26,50 @@
 
                     @include('partials._errors')
 
-                    <form action="{{ route('dashboard.products.update',$product->id) }}" method="post">
+                    <form action="{{ route('dashboard.products.update',$product->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-
-                        <div class="form-group col-md-6">
-                            <label>@lang('site.name')</label>
-                            <input type="text" name="name" class="form-control" value="{{ $product->name}}">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>@lang('site.name')</label>
+                                <input type="text" name="name" class="form-control" value="{{ $product->name}}">
+                            </div> 
+                            <div class="form-group col-md-6">
+                                <label>@lang('site.categories')</label>
+                                <select name="category_id" id="" class="form-control " required>
+                                    <option value="" selected disabled>@lang('site.all_categories')</option>
+                                   @foreach ($categories as $cat)
+                                       <option value="{{ $cat->id }}" {{ $product->category_id == $cat->id ?'selected':'' }}>{{ $cat->name }}</option>
+                                   @endforeach
+                                </select>
+                            </div>
+    
                         </div>
-
-                        
-                        <div class="form-group col-md-6">
-                            
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>@lang('site.image')</label>
+                                <input  type="file" name="image" class="form-control image">
+                            </div>
+    
+                            <div class="form-group col-md-6">
+                                <img src="{{ $product->image_path }}" style="width: 100px"
+                                    class="img-thumbnail image-preview" alt="">
+                            </div>
                         </div>
-                        
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label>@lang('site.purches_price')</label>
+                                <input  type="number" name="purches_price" class="form-control " value="{{$product->purches_price}}" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>@lang('site.sale_price')</label>
+                                <input  type="number" name="sale_price" class="form-control " value="{{ $product->sale_price }}" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>@lang('site.stock')</label>
+                                <input  type="number" name="stock" class="form-control " value="{{$product->stock }}" required>
+                            </div>
+                        </div>
 
                        
                        

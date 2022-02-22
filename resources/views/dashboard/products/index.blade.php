@@ -17,11 +17,19 @@
             <div class="box box-primary">
                 
                 <div class="box-header with-border" style="margin-bottom:10px ">
-                    <h3 class="box-title"><i class="fa fa-products"></i> @lang('site.products') <small>{{ $products->count() }}</small></h3>
+                    <h3 class="box-title"><i class="fa fa-products"></i> @lang('site.products') <small><mark>{{ $products->count() }}</mark></small></h3>
                     <form action="{{ route('dashboard.products.index') }}" method="GET" style="margin-top:10px;" autocomplete="off">
                         <div class="row">
                             <div class="col-md-4">
                                 <input type="text" name="search" class="form-control" placeholder="@lang('site.search')" value="{{ request()->search }}">
+                            </div>
+                            <div class="col-md-4">
+                                <select name="category_id" class="form-control" id="">
+                                    <option value=""  selected disabled>@lang('site.all_categories')</option>
+                                   @foreach ($categories as$cat)
+                                       <option value="{{ $cat->id }}" {{ request()->category_id == $cat->id ? 'selected' :''}}>{{ $cat->name }}</option>
+                                   @endforeach
+                                </select>
                             </div>
                             <div class="col-md-4">
                                 <button type="submit" class="btn btn-primary btn-sm"><li class="fa fa-search"></li> @lang('site.search')</button>
@@ -63,7 +71,7 @@
                                 <td><img src="{{ $product->image_path }}" alt="" style="width: 50px"></td>
                                 <td>{{ $product->purches_price }}</td>
                                 <td>{{ $product->sale_price }}</td>
-                                <td>{{ $product->profit_percent }}</td>
+                                <td><mark>{{ $product->profit_percent }}%</mark></td>
                                 <td>{{ $product->stock }}</td>
                                
                                 <td>
@@ -93,7 +101,7 @@
                 {{ $products->links() }}
                 
                   @else
-                      <div class="text-center">
+                      <div class="text-center alert alert-warning">
                         <h2>@lang('site.no_data_found')</h2>
                       </div>
                   @endif

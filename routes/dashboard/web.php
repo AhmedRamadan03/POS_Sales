@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\UserController;
@@ -18,6 +19,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
         Route::resource('categories',CategoryController::class)->except(['show']);
 
         Route::resource('products',ProductController::class)->except(['show']);
+
+        Route::resource('clients',ClientController::class)->except(['show']);
     });// end route of dashborad
 });
 

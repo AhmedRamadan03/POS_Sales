@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProductController extends Controller
@@ -18,11 +19,17 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::paginate(5);
-        // $products = Product::when($request->search,function($q) use ($request){
-        //     return $q->where('name', 'like', '%' . $request->search . '%');
-        // })->latest()->paginate(10);
-        return view('dashboard.products.index',compact('products'));   
+        $categories = Category::all();
+        $products = Product::when($request->search,function($q) use ($request){
+
+            return $q->where('name', 'like', '%' . $request->search . '%');
+
+        })->when($request->category_id , function($q) use ($request){
+
+            return $q->where('category_id',$request->category_id);
+
+        })->latest()->paginate(10);
+        return view('dashboard.products.index',compact('products','categories'));   
     }
 
     /**
@@ -50,6 +57,7 @@ class ProductController extends Controller
             'purches_price' => 'required',
             'sale_price' => 'required',
             'stock' => 'required',
+            
         ]);
 
 
@@ -89,7 +97,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('dashboard.products.edit',compact('product'));
+        $categories = Category::all();
+        return view('dashboard.products.edit',compact('product','categories'));
     }
 
     /**
@@ -101,7 +110,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:products,name,'.$product->id,
+            'category_id' => 'required',
+            'purches_price' => 'required',
+            'sale_price' => 'required',
+            'stock' => 'required',
+        ]);
+
+        $request_data = $request->all();
+        if ($request->image) {
+            if ($product->image != 'defualt.png') {
+                Storage::disk('public_uploads')->delete('/product_images/' . $product->image);
+            }
+
+            Image::make($request->image)->resize(40,null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('uploads/product_images/' . $request->image->hashName()));
+
+            $request_data['image'] = $request->image->hashName();
+
+        }
+        
+        $product->update($request_data);
+        session()->flash('success', __('site.edit_successfully'));
+        return redirect()->route('dashboard.products.index');
+        
     }
 
     /**
@@ -112,6 +146,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if ($product->image != 'defualt.png') {
+            Storage::disk('public_uploads')->delete('/product_images/' . $product->image);
+        }
+      
+
         $product->delete();
         session()->flash('success', __('site.delete_successfully'));
         return redirect()->route('dashboard.products.index'); 

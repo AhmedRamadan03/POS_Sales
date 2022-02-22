@@ -3,27 +3,56 @@
 return [
 
     'dashboard'                => 'الرئيسية',
+
+    //category
     'categories'               => 'الأقسام',
+    'related_products'            =>'المنتجات المرتبطة',
+    'add_category'              =>  'أضافة قسم',
+    'add_cat'                  =>  'أضافة قسم',
+
+
+
+
+    //products
     'products'                 => 'المنتجات',
+    'all_categories'              =>  'كل الأقسام',
+    'purches_price'            =>   'سعر الشراء',
+    'sale_price'                =>   'سعر البيع',
+    'stock'                      => ' المخزن',
+    'profit_percent'            =>'نسبه المكسب',
+
+
+    //orders
     'orders'                   => 'الفواتير',
+
+
+
+    //users
     'users'                    => 'المستخدمين',
-    'clients'                  => 'العملاء',
-
-
     'add_user'                 => 'أضافة مستخدم',
-    'edit_info'                 => 'تعديل البيانات',
     'first_name'               => 'الاسم الاول',
     'last_name'                => 'أسم العائلة',
     'email'                    => 'البريد الألكتروني',
     'image'                    => 'الصوره',
     'password'                 => 'كلمة المرور',
     'password_confirmation'    => 'تأكيد كلمة المرور  ',
+    'permissions'              => ' الصلاحيات',
 
+    // clients
+    'clients'                  => 'العملاء',
+    'add_client'                  =>  'أضافة عميل',
+    'phone'                    =>   'رقم الهاتف',
+    'address'                  =>   'العنوان',
+
+    
+    
+    
+    'edit_info'                 => 'تعديل البيانات',
     'add'                      => 'أضف',
-    'add_cat'                  =>  'أضافة قسم',
+    
     'name'                     =>'الأسم',
     
-    'permissions'              => ' الصلاحيات',
+    
 
 
     'create'                   => ' أضافة   ',
@@ -42,10 +71,9 @@ return [
     'yes'                      => 'تأكيد',
     'no'                       => 'الغاء',
     'logout'                   => 'تسجيل الخروج',
-    'add_product'              =>  'أضافة منتج',
-    'all_categories'              =>  'كل الأقسام',
-    'purches_price'            =>   'سعر الشراء',
-    'sale_price'                =>   'سعر البيع',
-    'stock'                      => ' المخزن',
-    'profit_percent'            =>'نسبه المكسب'
+    'login'                   => 'تسجيل الدخول',
+    'remember_me'              =>   'تذكرني',
+   
+    
+    
 ];

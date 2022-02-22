@@ -17,7 +17,7 @@
             <div class="box box-primary">
                 
                 <div class="box-header with-border" style="margin-bottom:10px ">
-                    <h3 class="box-title"><i class="fa fa-users"></i> @lang('site.users') <small>{{ $users->count() }}</small></h3>
+                    <h3 class="box-title"><i class="fa fa-users"></i> @lang('site.users') <small><mark>{{ $users->count() }}</mark></small></h3>
                     <form action="{{ route('dashboard.users.index') }}" method="GET" style="margin-top:10px;" autocomplete="off">
                         <div class="row">
                             <div class="col-md-4">
@@ -85,7 +85,7 @@
                 {{ $users->links() }}
                 
                   @else
-                      <div class="text-center">
+                      <div class="text-center alert alert-warning">
                         <h2>@lang('site.no_data_found')</h2>
                       </div>
                   @endif
