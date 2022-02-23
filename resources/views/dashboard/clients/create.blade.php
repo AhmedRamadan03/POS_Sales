@@ -1,4 +1,7 @@
 @extends('layouts.dashboard.app')
+@section('title')
+   @lang('site.add_client')
+@endsection
 
 @section('content')
     <div class="content-wrapper">

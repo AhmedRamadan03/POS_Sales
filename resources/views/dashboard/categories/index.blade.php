@@ -1,15 +1,18 @@
 @extends('layouts.dashboard.app')
+@section('title')
+   @lang('site.categories')
+@endsection
 
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                <i class="fa fa-list-alt"></i>  @lang('site.categories')
+                 <i class="ion ion-bag"></i>  @lang('site.categories')
             </h1>
 
             <ol class="breadcrumb">
                 <li ><a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a></li>
-                <li class="active"><i class="fa fa-list-alt"></i> @lang('site.categories') </li>
+                <li class="active"> <i class="ion ion-bag"></i> @lang('site.categories') </li>
             </ol>
         </section>
 
@@ -17,7 +20,7 @@
             <div class="box box-primary">
                 
                 <div class="box-header with-border" style="margin-bottom:10px ">
-                    <h3 class="box-title"><i class="fa fa-list-alt"></i> @lang('site.categories') <small><mark>{{ $categories->count() }}</mark> </small></h3>
+                    <h3 class="box-title"> <i class="ion ion-bag"></i> @lang('site.categories') <small><mark>{{ $categories->count() }}</mark> </small></h3>
                     <form action="{{ route('dashboard.categories.index') }}" method="GET" style="margin-top:10px;" autocomplete="off">
                         <div class="row">
                             <div class="col-md-4">

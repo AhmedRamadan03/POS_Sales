@@ -6,9 +6,10 @@ return [
 
     //category
     'categories'               => 'الأقسام',
-    'related_products'            =>'المنتجات المرتبطة',
+    'related_products'          => 'المنتجات المرتبطة',
     'add_category'              =>  'أضافة قسم',
     'add_cat'                  =>  'أضافة قسم',
+    'edit_cat'                  =>  'تعديل القسم ',
 
 
 
@@ -19,24 +20,24 @@ return [
     'purches_price'            =>   'سعر الشراء',
     'sale_price'                =>   'سعر البيع',
     'stock'                      => ' الكمية',
-    'profit_percent'            =>'نسبه المكسب',
-    'add_product'            =>'أضافة  منتج',
+    'profit_percent'            => 'نسبه المكسب',
+    'add_product'               => 'أضافة  منتج',
     'price'                    =>   'السعر',
     'product'                   =>  'المنتج',
 
 
     //orders
     'orders'                   => 'الفواتير',
-    'add_order'                   => 'أنشاء فاتورة',
+    'add_order'                 => 'أنشاء فاتورة',
     'total'                     =>  'الأجمالي',
-    'previous_orders'         =>  'الطلبات',      
-    'created_at'         =>  'تاريخ الفاتورة',      
-    'client_name'         =>  'أٍسم العميل',      
-    'show'         =>  'عرض',      
-    'print'         =>  'طباعة',      
-    'edit_order'         =>  'تعديل الفاتورة',      
-    'show_products'         =>  'عرض الفاتورة',      
-    'loading'               =>  'جاري التحميل',
+    'previous_orders'           =>  'الطلبات',
+    'created_at'                =>  'تاريخ الفاتورة',
+    'client_name'               =>  'أٍسم العميل',
+    'show'                      =>  'عرض',
+    'print'                     =>  'طباعة',
+    'edit_order'                 =>  'تعديل الفاتورة',
+    'show_products'              =>  'عرض الفاتورة',
+    'loading'                    =>  'جاري التحميل',
 
 
     //users
@@ -49,8 +50,8 @@ return [
     'password'                 => 'كلمة المرور',
     'password_confirmation'    => 'تأكيد كلمة المرور  ',
     'permissions'              => ' الصلاحيات',
-    'user'              => ' المشرف',
-    'prand'              => ' الشركه',
+    'user'                      => ' المشرف',
+    'prand'                      => ' الشركه',
 
     // clients
     'clients'                  => 'العملاء',
@@ -58,15 +59,15 @@ return [
     'phone'                    =>   'رقم الهاتف',
     'address'                  =>   'العنوان',
 
-    
-    
-    
+
+
+
     'edit_info'                 => 'تعديل البيانات',
     'add'                      => 'أضف',
-    
-    'name'                     =>'الأسم',
-    
-    
+
+    'name'                     => 'الأسم',
+
+
 
 
     'create'                   => ' أضافة   ',
@@ -87,7 +88,7 @@ return [
     'logout'                   => 'تسجيل الخروج',
     'login'                   => 'تسجيل الدخول',
     'remember_me'              =>   'تذكرني',
-   
-    
-    
+
+
+
 ];

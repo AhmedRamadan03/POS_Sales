@@ -3,43 +3,92 @@
 return [
 
     'dashboard'                => 'Home',
-    'categories'               => 'Categories',
-    'products'                 => 'Products',
-    'orders'                   => 'الفواتير',
+
+    //category
+    'categories'               => 'categories',
+    'related_products'          => 'Products',
+    'add_category'              =>  'Add Category',
+    'add_cat'                  =>  'Add Category',
+    'edit_cat'                  =>  'Edit Catergory',
+
+
+
+
+    //products
+    'products'                 => 'Productes',
+    'all_categories'              =>  'All Categories',
+    'purches_price'            =>   ' Purches Price',
+    'sale_price'                =>   'Sale Price',
+    'stock'                      => ' Quantity',
+    'profit_percent'            => 'Profit Percent',
+    'add_product'               => 'Add Product',
+    'price'                    =>   'Price',
+    'product'                   =>  'Product',
+
+
+    //orders
+    'orders'                   => 'Invoice',
+    'add_order'                 => 'Create Invoice',
+    'total'                     =>  'Total',
+    'previous_orders'           =>  'Orders',
+    'created_at'                =>  'Invoice Data',
+    'client_name'               =>  'Client name',
+    'show'                      =>  'Show',
+    'print'                     =>  'Print',
+    'edit_order'                 =>  'Edit Invoice',
+    'show_products'              =>  ' Invoice Details',
+    'loading'                    =>  ' Loading',
+
+
+    //users
     'users'                    => 'Users',
-    'clients'                  => 'العملاء',
-
-
     'add_user'                 => 'Add User',
-    'edit_info'                 => 'Edit Info',
     'first_name'               => 'First name',
-    'last_name'                => 'last name',
+    'last_name'                => 'Last Name',
     'email'                    => ' Email',
     'image'                    => 'Image',
-    'password'                 => 'Password ',
-    'password_confirmation'    => 'Confirm Password ',
-
-    'add'                      => 'Add',
-    'add_cat'                  =>  'Add Category',
-    'name'                     =>'Name',
-    
+    'password'                 => ' Password',
+    'password_confirmation'    => 'Confirm Passwoard ',
     'permissions'              => ' Permission',
+    'user'                      => ' Users',
+    'prand'                      => ' Compony',
+
+    // clients
+    'clients'                  => 'Clients',
+    'add_client'                  =>  'Add Client',
+    'phone'                    =>   'Phone Number ',
+    'address'                  =>   'Address',
+
+
+
+
+    'edit_info'                 => 'Edit Information',
+    'add'                      => 'Add',
+
+    'name'                     => 'Name',
+
+
 
 
     'create'                   => ' Add   ',
     'read'                     => ' Show',
     'update'                   => ' Edit',
-    'delete'                   => ' Delet',
+    'delete'                   => ' Delete',
     'action'                   => ' Action',
     'edit'                     => ' Edit',
-    'no_data_found'            => 'Sory not found data',
-    'search'                   => 'search',
+    'no_data_found'            => 'Sorry dont found data',
+    'search'                   => 'Search',
 
-    'add_successfully'         => 'تم أضافة البيانات بنجاح',
-    'edit_successfully'        => 'تم تعديل البيانات بنجاح',
-    'delete_successfully'      => 'تم حذف البيانات بنجاح',
-    'confirm_delete'           => ' تأكيد الحذف',
+    'add_successfully'         => 'Data has been added successfully',
+    'edit_successfully'        => 'Data has been modified successfully',
+    'delete_successfully'      => 'Data has been deleted successfully',
+    'confirm_delete'           => ' Are you sure',
     'yes'                      => 'Yes',
     'no'                       => 'No',
-    'logout'                   => 'Logout',
+    'logout'                   => 'Log Out',
+    'login'                   => 'Log In',
+    'remember_me'              =>   'Remember Me',
+
+
+
 ];

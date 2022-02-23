@@ -1,15 +1,18 @@
 @extends('layouts.dashboard.app')
-
+@section('title')
+   @lang('site.add_product')
+@endsection
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>@lang('site.products')
+            <h1>
+                <i class="ion ion-stats-bars"></i> @lang('site.products')
             </h1>
 
             <ol class="breadcrumb">
                 <li><a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a>
                 </li>
-                <li class="active"><a href="{{ route('dashboard.products.index') }}"><i class="fa fa-products"></i>
+                <li class="active"><a href="{{ route('dashboard.products.index') }}"><i class="ion ion-stats-bars"></i>
                         @lang('site.products') </a></li>
                 <li class="active">@lang('site.add_product')</li>
             </ol>

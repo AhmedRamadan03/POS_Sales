@@ -1,15 +1,19 @@
 @extends('layouts.dashboard.app')
+@section('title')
+   @lang('site.add_category')
+@endsection
 
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>@lang('site.categories')
+            <h1>
+                <i class="ion ion-bag"></i> @lang('site.categories')
             </h1>
 
             <ol class="breadcrumb">
                 <li><a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard') </a>
                 </li>
-                <li class="active"><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-categories"></i>
+                <li class="active"><a href="{{ route('dashboard.categories.index') }}"> <i class="ion ion-bag"></i>
                         @lang('site.categories') </a></li>
                 <li class="active">@lang('site.add_cat')</li>
             </ol>

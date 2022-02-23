@@ -28,7 +28,7 @@ class ClientOrderController extends Controller
      */
     public function create(Client $client)
     {   
-        $orders = $client->orders()->with('products')->latest()->paginate(5);
+        $orders = $client->orders()->with('products')->latest()->get();
         $categories = Category::with('products')->get();
         return view('dashboard.clients.orders.create', compact('client', 'categories','orders'));
     }
@@ -72,8 +72,8 @@ class ClientOrderController extends Controller
     public function edit(Client $client, Order $order)
     {
         $categories = Category::with('products')->get();
-        
-        return view('dashboard.clients.orders.edit',compact('order','client','categories'));
+        $orders = $client->orders()->with('products')->where('client_id',$client->id)->latest()->get();
+        return view('dashboard.clients.orders.edit',compact('order','client','categories','orders'));
     }
 
     /**

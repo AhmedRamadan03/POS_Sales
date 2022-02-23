@@ -1,5 +1,9 @@
 @extends('layouts.dashboard.app')
 
+@section('title')
+   @lang('site.edit_info')
+@endsection
+
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">

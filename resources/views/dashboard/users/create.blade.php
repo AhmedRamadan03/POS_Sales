@@ -1,9 +1,12 @@
 @extends('layouts.dashboard.app')
-
+@section('title')
+   @lang('site.add_user')
+@endsection
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>@lang('site.users')
+            <h1>
+                <i class="fa fa-users"></i> @lang('site.users')
             </h1>
 
             <ol class="breadcrumb">

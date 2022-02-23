@@ -1,5 +1,7 @@
 @extends('layouts.dashboard.app')
-
+@section('title')
+   @lang('site.edit_order')
+@endsection
 @section('content')
 
     <div class="content-wrapper">
@@ -19,7 +21,7 @@
 
             <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-4">
 
                     <div class="box box-primary">
 
@@ -97,7 +99,7 @@
 
                 </div><!-- end of col -->
 
-                <div class="col-md-6">
+                <div class="col-md-8">
 
                     <div class="box box-primary">
 
@@ -158,14 +160,14 @@
                             <div class="box-header">
 
                                 <h3 class="box-title" style="margin-bottom: 10px">@lang('site.previous_orders')
-                                    <small>{{ $order->count() }}</small>
+                                    <small>{{ $orders->count() }}</small>
                                 </h3>
 
                             </div><!-- end of box header -->
 
                             <div class="box-body">
 
-                                @foreach ($order as $ordere)
+                                @foreach ($orders as $order)
 
                                     <div class="panel-group">
 
