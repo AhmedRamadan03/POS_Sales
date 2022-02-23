@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\Dashboard\CategoryController;
-use App\Http\Controllers\Dashboard\Client\OrderController;
+use App\Http\Controllers\Dashboard\Client\ClientOrderController;
 use App\Http\Controllers\Dashboard\ClientController;
+use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\UserController;
@@ -22,7 +23,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
         Route::resource('products',ProductController::class)->except(['show']);
 
         Route::resource('clients',ClientController::class)->except(['show']);
-        Route::resource('clients.orders',OrderController::class)->except(['show']);
+        Route::resource('clients.orders',ClientOrderController::class)->except(['show']);
+
+        Route::resource('orders',OrderController::class);
+        Route::get('orders/{order}/products', [OrderController::class,'products'])->name('orders.products');
 
     });// end route of dashborad
 });

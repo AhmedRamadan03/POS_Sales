@@ -30,7 +30,13 @@ return [
     'add_order'                   => 'أنشاء فاتورة',
     'total'                     =>  'الأجمالي',
     'previous_orders'         =>  'الطلبات',      
-
+    'created_at'         =>  'تاريخ الفاتورة',      
+    'client_name'         =>  'أٍسم العميل',      
+    'show'         =>  'عرض',      
+    'print'         =>  'طباعة',      
+    'edit_order'         =>  'تعديل الفاتورة',      
+    'show_products'         =>  'عرض الفاتورة',      
+    'loading'               =>  'جاري التحميل',
 
 
     //users
@@ -43,6 +49,8 @@ return [
     'password'                 => 'كلمة المرور',
     'password_confirmation'    => 'تأكيد كلمة المرور  ',
     'permissions'              => ' الصلاحيات',
+    'user'              => ' المشرف',
+    'prand'              => ' الشركه',
 
     // clients
     'clients'                  => 'العملاء',
