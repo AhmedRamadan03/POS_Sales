@@ -149,7 +149,7 @@
                             <div class="box-header">
 
                                 <h3 class="box-title" style="margin-bottom: 10px">@lang('site.previous_orders')
-                                    <small>{{ $orders->total() }}</small>
+                                    <small>{{ $orders->count() }}</small>
                                 </h3>
 
                             </div><!-- end of box header -->
@@ -174,7 +174,7 @@
 
                                                     <ul class="list-group">
                                                         @foreach ($order->products as $product)
-                                                            <li class="list-group-item">{{ $product->name }}</li>
+                                                            <li class="list-group-item">{{ $product->name }} </li>
                                                         @endforeach
                                                     </ul>
 
@@ -188,7 +188,7 @@
 
                                 @endforeach
 
-                                {{ $orders->links() }}
+                                {{-- {{ $orders->links() }} --}}
 
                             </div><!-- end of box body -->
 

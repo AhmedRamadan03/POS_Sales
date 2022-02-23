@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -26,9 +27,10 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Client $client)
-    {
+    {   
+        $orders = $client->orders()->with('products')->get();
         $categories = Category::with('products')->get();
-        return view('dashboard.clients.orders.create', compact('client', 'categories'));
+        return view('dashboard.clients.orders.create', compact('client', 'categories','orders'));
     }
 
     /**
@@ -39,7 +41,26 @@ class OrderController extends Controller
      */
     public function store(Request $request,Client $client)
     {
-        //
+        $request->validate([
+            'product_ids'      =>  'required|array',
+        ]);
+
+        $order  =   $client->orders()->create([]);
+        $total_price    = 0;
+
+        foreach($request->product_ids as $index=>$product_id){
+            $product    = Product::where('id',$product_id)->first();
+            $total_price    +=  $product->sale_price;
+            $order->products()->attach($product_id,['quantity' =>  $request->quantities[$index]]);
+
+            $product->update([
+                'stock' =>  $product->stock - $request->quantities[$index],
+            ]);
+        }
+        $order->update([
+            'total_price'   =>   $total_price
+        ]);
+        
     }
 
     /**

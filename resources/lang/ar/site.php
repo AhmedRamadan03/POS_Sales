@@ -29,6 +29,7 @@ return [
     'orders'                   => 'الفواتير',
     'add_order'                   => 'أنشاء فاتورة',
     'total'                     =>  'الأجمالي',
+    'previous_orders'         =>  'الطلبات',      
 
 
 
