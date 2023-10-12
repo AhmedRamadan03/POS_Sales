@@ -27,8 +27,14 @@
                     <div class="box box-primary">
 
                         <div class="box-header">
+                            <div style="display: flex; justify-content: space-between">
 
                             <h3 class="box-title" style="margin-bottom: 10px">@lang('site.orders')</h3>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                @lang('site.add_order')
+                              </button>
+                            </div>
+                            <br><br>
 
                             <form action="{{ route('dashboard.orders.index') }}" method="get">
 
@@ -156,7 +162,37 @@
             </div><!-- end of row -->
 
         </section><!-- end of content section -->
+<!-- Button trigger modal -->
 
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">حدد العميل</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{ route('dashboard.orders.store') }}" method="post">
+            @csrf
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">العميل</label>
+                <select name="client_id" id="client_id" class="form-control">
+                  @foreach ($clients as $client)
+                    <option value="{{ $client->id }}">{{ $client->name }}</option>
+                  @endforeach
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">ألتالي</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
     </div><!-- end of content wrapper -->
 
 @endsection
